@@ -15,7 +15,7 @@ app.use(express.static(path.resolve('src', 'static')));
 // Deveolp
 // app.use('/products', productRouter);
 // app.listen(5000, () => {
-//   console.log('Server started');
+//   console.log('Server started at http://localhost:5000');
 // });
 
 // Product
