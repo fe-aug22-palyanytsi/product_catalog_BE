@@ -10,7 +10,6 @@ const API_SUBPATH = '/.netlify/functions/server';
 const app = express();
 
 app.use(cors());
-app.use(express.static(path.resolve('src', 'static')));
 
 // Deveolp
 // app.use('/products', productRouter);
@@ -19,6 +18,7 @@ app.use(express.static(path.resolve('src', 'static')));
 // });
 
 // Product
+app.use(`${API_SUBPATH}/static`, express.static(path.resolve('src', 'static')));
 app.use(`${API_SUBPATH}/products`, productRouter);
 
 export const handler = serverless(app);
