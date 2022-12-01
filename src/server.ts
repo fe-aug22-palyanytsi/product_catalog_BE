@@ -1,6 +1,7 @@
+import serverless from 'serverless-http';
 import express from 'express';
 import cors from 'cors';
-import serverless from 'serverless-http';
+import path from 'path';
 
 import { router as productRouter } from './routes/products';
 
@@ -9,9 +10,10 @@ const API_SUBPATH = '/.netlify/functions/server';
 const app = express();
 
 app.use(cors());
-app.use('/', productRouter);
+app.use(express.static(path.resolve('src', 'static')));
 
 // Deveolp
+// app.use('/products', productRouter);
 // app.listen(5000, () => {
 //   console.log('Server started');
 // });
