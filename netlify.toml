@@ -1,5 +1,4 @@
 [build]
-  base = "product_catalog_BE/"
   publish = "dist/"
   functions = "functions"
 
