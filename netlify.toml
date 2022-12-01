@@ -4,4 +4,4 @@
 
 [functions]
   directory = "src"
-  included_files = ["src/data/*"]
+  included_files = ["src/data/**/*", "src/static/**/*"]
