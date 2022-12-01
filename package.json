@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/netlify-lambda serve src",
-    "build": "./node_modules/.bin/netlify-lambda build src",
+    "start": "",
+    "build": "",
+    "nodemon": "nodemon src/server.ts",
     "setup": "ts-node src/setup.ts",
     "ts-check": "tsc --noEmit --lib ES2015 ./src/*.ts"
   },

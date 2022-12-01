@@ -9,7 +9,13 @@ const API_SUBPATH = '/.netlify/functions/server';
 const app = express();
 
 app.use(cors());
+app.use('/', productRouter);
 
+// Deveolp
+// app.listen(5000, () => {
+//   console.log('Server started');
+// });
+
+// Product
 app.use(`${API_SUBPATH}/products`, productRouter);
-
 export const handler = serverless(app);

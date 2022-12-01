@@ -1,2 +1,8 @@
 [build]
+  base = "product_catalog_BE/"
+  publish = "dist/"
   functions = "functions"
+
+[functions]
+  directory = "src"
+  included_files = ["src/data/*"]
