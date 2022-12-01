@@ -20,4 +20,8 @@ app.use(express.static(path.resolve('src', 'static')));
 
 // Product
 app.use(`${API_SUBPATH}/products`, productRouter);
+app.use('/imgtest', (req, res) => {
+  res.sendFile(path.resolve('src', 'static', 'img', '04.jpg'));
+});
+
 export const handler = serverless(app);
