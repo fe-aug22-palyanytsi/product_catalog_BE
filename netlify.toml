@@ -1,6 +1,7 @@
 [build]
-  publish = “dist/”
-  functions = “functions”
+  publish = "dist/"
+  functions = "functions"
+
 [functions]
-  directory = “src”
-  included_files = [“src/data/*“, “src/static/*“]
+  directory = "src"
+  included_files = ["src/data/*", "src/static/*"]
