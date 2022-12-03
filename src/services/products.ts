@@ -65,3 +65,30 @@ export const getSingleById = async (productId: string) => {
 
   return product;
 };
+
+export const getNewest = async () => {
+  const products = await read(ALL_PHONES_PATH);
+
+  if (products?.length) {
+    return products.sort((prevProduct, currProduct) => (
+      currProduct.year - prevProduct.year
+    )).slice(0, 10);
+  }
+
+  return null;
+};
+
+export const getBiggestDiscount = async () => {
+  const products = await read(ALL_PHONES_PATH);
+
+  if (products?.length) {
+    return products.sort((prevProduct, currProduct) => {
+      const currProductDiscount = (currProduct.fullPrice - currProduct.price);
+      const prevProductDiscount = (prevProduct.fullPrice - prevProduct.price);
+
+      return currProductDiscount - prevProductDiscount;
+    }).slice(0, 10);
+  }
+
+  return null;
+};
