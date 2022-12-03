@@ -27,3 +27,23 @@ export const getSingle = async (req: Request, res: Response) => {
     res.sendStatus(404);
   }
 };
+
+export const getNew = async (req: Request, res: Response) => {
+  try {
+    const products = await productsServices.getNewest();
+
+    res.send(products);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+};
+
+export const getDiscout = async (req: Request, res: Response) => {
+  try {
+    const products = await productsServices.getBiggestDiscount();
+
+    res.send(products);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+};
