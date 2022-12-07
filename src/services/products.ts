@@ -12,20 +12,9 @@ const read = async (path: string): Promise<Product[] | null> => {
   return JSON.parse(products);
 };
 
-export const getAllByQuery = async (
-  sort: SortType,
-  page = 1,
-  perPage: PerPageType = PerPageType.All,
-) => {
-  let products = await read(ALL_PHONES_PATH);
-  const productsLength = products?.length;
-
-  if (!products) {
-    return null;
-  }
-
-  products = [...products].sort((prevProduct, currProduct) => {
-    switch (sort) {
+const sortFunction = (products: Product[], sortType: SortType) => {
+  return [...products].sort((prevProduct, currProduct) => {
+    switch (sortType) {
       case SortType.Newest:
         return currProduct.year - prevProduct.year;
 
@@ -42,21 +31,61 @@ export const getAllByQuery = async (
         return 0;
     }
   });
+};
 
-  if (perPage !== PerPageType.All) {
-    const numberPerPage = +perPage;
-    const startIndex = (page - 1) * numberPerPage;
-    const possibleEndIndex = startIndex + numberPerPage;
-    const endIndex = possibleEndIndex > products.length
-      ? products.length
-      : possibleEndIndex;
+const paginationFunction = (
+  products: Product[],
+  page: number,
+  perPage: PerPageType,
+) => {
+  const numberPerPage = +perPage;
+  const startIndex = (page - 1) * numberPerPage;
+  const possibleEndIndex = startIndex + numberPerPage;
+  const endIndex = possibleEndIndex > products.length
+    ? products.length
+    : possibleEndIndex;
 
-    products = products.slice(startIndex, endIndex);
+  return products.slice(startIndex, endIndex);
+};
+
+export const getAllByQuery = async (
+  sort: SortType,
+  page = 1,
+  perPage: PerPageType = PerPageType.All,
+) => {
+  const products = await read(ALL_PHONES_PATH);
+  let phones = products?.filter(product => product.category === 'phones');
+  let tablets = products?.filter(product => product.category === 'tablets');
+  const phonesLength = phones?.length;
+  const tabletsLength = tablets?.length;
+  const productLength = products?.length;
+
+  if (!products) {
+    return null;
+  }
+
+  if (phones) {
+    phones = sortFunction(phones, sort);
+
+    if (perPage !== PerPageType.All) {
+      phones = paginationFunction(phones, page, perPage);
+    }
+  }
+
+  if (tablets) {
+    tablets = sortFunction(tablets, sort);
+
+    if (perPage !== PerPageType.All) {
+      tablets = paginationFunction(tablets, page, perPage);
+    }
   }
 
   return {
-    phones: products,
-    length: productsLength,
+    phones,
+    phonesLength,
+    tablets,
+    tabletsLength,
+    length: productLength,
   };
 };
 
