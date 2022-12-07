@@ -8,3 +8,4 @@ router.get('/discount', productsController.getDiscout);
 router.get('/new', productsController.getNew);
 router.get('/', productsController.getAll);
 router.get('/:productId', productsController.getSingle);
+router.get('/:productId/recommended', productsController.getRecommended);
