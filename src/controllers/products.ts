@@ -47,3 +47,13 @@ export const getDiscout = async (req: Request, res: Response) => {
     res.sendStatus(404);
   }
 };
+
+export const getRecommended = async (req: Request, res: Response) => {
+  try {
+    const products = await productsServices.getRecommendedProducts();
+
+    res.send(products);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+};
