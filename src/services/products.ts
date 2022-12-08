@@ -90,7 +90,11 @@ export const getAllByQuery = async (
 };
 
 export const getSingleById = async (productId: string) => {
-  const product = await read(`${EXTENSIVE_PHONES_PATH}${productId}.json`);
+  let product;
+
+  if (productId.includes('iphone')) {
+    product = await read(`${EXTENSIVE_PHONES_PATH}${productId}.json`);
+  } else if (productId.includes('ipad')) {}
 
   return product;
 };
