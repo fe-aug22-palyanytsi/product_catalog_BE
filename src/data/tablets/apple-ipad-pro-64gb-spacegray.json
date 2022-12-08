@@ -9,11 +9,11 @@
 	"colorsAvailable": ["silver", "spacegray"],
 	"color": "spacegray",
 	"images": [
-		"img/tablets/apple-ipad-pro/black/00.jpg",
-		"img/tablets/apple-ipad-pro/black/01.jpg",
-		"img/tablets/apple-ipad-pro/black/02.jpg",
-		"img/tablets/apple-ipad-pro/black/03.jpg",
-		"img/tablets/apple-ipad-pro/black/04.jpg"
+		"img/tablets/apple-ipad-pro/spacegray/00.jpg",
+		"img/tablets/apple-ipad-pro/spacegray/01.jpg",
+		"img/tablets/apple-ipad-pro/spacegray/02.jpg",
+		"img/tablets/apple-ipad-pro/spacegray/03.jpg",
+		"img/tablets/apple-ipad-pro/spacegray/04.jpg"
 	],
 	"description": [
 		{
