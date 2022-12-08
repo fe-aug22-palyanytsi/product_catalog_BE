@@ -3,8 +3,9 @@ import { SortType } from '../types/SortType';
 import { Product } from '../types/Product';
 import { PerPageType } from '../types/PerPageType';
 
-const ALL_PHONES_PATH = 'src/data/phones.json';
+const ALL_PHONES_PATH = 'src/data/product.json';
 const EXTENSIVE_PHONES_PATH = 'src/data/phones/';
+const EXTENSIVE_TABLETS_PATH = 'src/data/tablets/';
 
 const read = async (path: string): Promise<Product[] | null> => {
   const products = await fs.readFile(path, 'utf-8');
@@ -90,7 +91,15 @@ export const getAllByQuery = async (
 };
 
 export const getSingleById = async (productId: string) => {
-  const product = await read(`${EXTENSIVE_PHONES_PATH}${productId}.json`);
+  let path = '';
+
+  if (productId.includes('iphone')) {
+    path = `${EXTENSIVE_PHONES_PATH}${productId}.json`;
+  } else if (productId.includes('ipad')) {
+    path = `${EXTENSIVE_TABLETS_PATH}${productId}.json`;
+  }
+
+  const product = await read(path);
 
   return product;
 };
