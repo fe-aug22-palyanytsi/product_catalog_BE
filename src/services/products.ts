@@ -130,3 +130,13 @@ export const getBiggestDiscount = async () => {
 
   return null;
 };
+
+export const getRecommendedProducts = async () => {
+  const products = await read(ALL_PHONES_PATH);
+
+  if (!products?.length) {
+    return null;
+  }
+
+  return products.sort(() => 0.5 - Math.random()).slice(0, 10);
+};
