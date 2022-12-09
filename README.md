@@ -14,3 +14,4 @@
 
   Params 
     - `/:productId` -  get extensive info about the product by `productId`
+    - `/:productId/recommended` -  get recommended products
